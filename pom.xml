@@ -12,6 +12,7 @@
         <junit.version>4.11</junit.version>
         <maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version>
         <selenium.java.version>2.43.1</selenium.java.version>
+        <xml.apis.version>1.4.01</xml.apis.version>
     </properties>
 
     <dependencies>
@@ -25,6 +26,15 @@
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
+        </dependency>
+        <!--You don't need this for stand-alone tests but if you try and add Selenium to, say, a project with Hibernate
+        then you might well find yourself with a transitive dependency problem that shows up as an error something like:
+        NoClassDefFoundError for org.w3c.dom.ElementTraversal
+        Adding a top level dependency for xml-apis version > 1.4.01 fixes this.-->
+        <dependency>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+            <version>${xml.apis.version}</version>
         </dependency>
     </dependencies>
 
